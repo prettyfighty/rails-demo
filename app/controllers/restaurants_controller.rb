@@ -4,10 +4,10 @@ class RestaurantsController < ApplicationController
     end
 
     def new
-        # @restaurant = Restaurant.new
+        @restaurant = Restaurant.new
     end
 
-    def list
+    def create
 
         # render html: "title is #{params[:title]}"
         redirect_to '/restaurants'
