@@ -1,0 +1,11 @@
+<h1><%= @restaurant.title %></h1>
+<ul>
+  <li>地址：<%= @restaurant.address %></li>
+  <li>電話：<%= @restaurant.tel %></li>
+  <li>Email：<%= @restaurant.email %></li>
+</ul>
+<div class="content">
+  <%= @restaurant.description %>
+</div>
+<br>
+<%= link_to "返回餐廳列表", restaurants_path, class: "btn btn-default" %>

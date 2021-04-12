@@ -1,0 +1,32 @@
+<h1>註冊</h1>
+
+<% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |messages| %>
+    <li><%= messages %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= simple_form_for(@user) do |f| %>
+ <%= f.input :email, label: "Email" %>
+ <%= f.input :password, label: "Password" %>
+ <%= f.input :password_confirmation, label: "Confirm Password" %>
+ <%= f.button :submit, class: "btn btn-success" %>
+<% end %>
+
+<!-- <%= form_for(@user) do |f| %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <%= f.submit %>
+<% end %> -->

@@ -1,0 +1,18 @@
+<% if @restaurant.errors.any? %>
+  <ul>
+    <% @restaurant.errors.full_messages.each do |messages| %>
+    <li><%= messages %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= simple_form_for(restaurant) do |f| %>
+  <%= f.input :title, label: "Title" %>
+  <%= f.input :tel, label: "Tel" %>
+  <%= f.input :email, label: "Email" %>
+  <%= f.input :address, label: "Address" %>
+  <%= f.input :description, label: "Description" %>
+  <%= f.button :submit, class: "btn btn-success" %>
+<% end %>
+<br>
+<%= link_to "返回餐廳列表", restaurants_path, class: "btn btn-default" %>
