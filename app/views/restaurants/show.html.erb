@@ -5,7 +5,7 @@
   <li>Email：<%= @restaurant.email %></li>
 </ul>
 <div class="content">
-  <%= @restaurant.description %>
+  <%= simple_format(@restaurant.description) %>
 </div>
 <br>
 <%= link_to "返回餐廳列表", restaurants_path, class: "btn btn-default" %>

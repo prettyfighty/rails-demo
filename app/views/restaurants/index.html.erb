@@ -19,6 +19,13 @@
       <th></th>
     </tr>
   </thead>
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :title_cont %>
+  <%= f.search_field :title_cont %>
+  <%= f.submit %>
+<% end %>
+
   <tbody>
     <% @restaurants.each do |restaurant| %>
     <tr>
@@ -32,4 +39,3 @@
     <% end %>
   </tbody>
 </table>
-
