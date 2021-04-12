@@ -6,6 +6,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :sessions, path: "users", only:[] do
+    collection do
+      get :sign_in, action: "new"
+      post :sign_in, action: "create"
+
+    end
+  end
+
   resources :restaurants#, only: [:index, :show]
   root "restaurants#index"
   # get '/restaurants', to: 'restaurants#index'

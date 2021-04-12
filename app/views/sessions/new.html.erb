@@ -1,0 +1,7 @@
+<h1>登入</h1>
+
+<%= simple_form_for(@user, url: sign_in_sessions_path) do |f| %>
+  <%= f.input :email, label: "Email" %>
+  <%= f.input :password, label: "Password" %>
+  <%= f.button :submit, label: "Login", class: "btn btn-success" %>
+<% end %>
