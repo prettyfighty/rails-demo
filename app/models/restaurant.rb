@@ -12,4 +12,6 @@ class Restaurant < ApplicationRecord
   def really_destroy!
 		super.destroy
 	end
+
+  # = gem paranoia 的功能 (軟刪除)
 end

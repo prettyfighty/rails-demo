@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
       redirect_to root_path
     else
-      redirect_to sign_in_sessions_path
+      redirect_to sign_in_sessions_path, notice: "您輸入的帳號或密碼錯誤"
     end
   end
 
