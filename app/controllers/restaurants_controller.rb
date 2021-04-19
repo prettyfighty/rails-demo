@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
 
-	before_action :find_restaurant, only: [:show, :edit, :update, :destroy]
+	before_action :find_restaurant, only: [:edit, :update, :destroy]
+	before_action :check_user!, except: [:index, :show]
 
 	def index
 		@q = Restaurant.available.ransack(params[:q])
@@ -8,15 +9,17 @@ class RestaurantsController < ApplicationController
 	end
 
 	def new
-		if session[:thankyou9527]
-			@restaurant = Restaurant.new
-		else
-			redirect_to restaurants_path
-		end
+		@restaurant = Restaurant.new
 	end
 
 	def create
-		@restaurant = Restaurant.new(restaurant_params)
+		# @restaurant = Restaurant.new(restaurant_params)
+		
+		# @restaurant.user_id = current_user.id
+		# @restaurant.user = current_user
+
+		@restaurant = current_user.restaurants.new(restaurant_params)
+
 		if @restaurant.save
 			redirect_to restaurants_path, notice: "新增餐廳成功"
 		else
@@ -26,6 +29,7 @@ class RestaurantsController < ApplicationController
 	end
 
 	def show
+		@restaurant = Restaurant.find(params[:id])
 	end
 
 	def edit
@@ -46,7 +50,8 @@ class RestaurantsController < ApplicationController
 
 	private
 		def find_restaurant
-		@restaurant = Restaurant.find(params[:id])
+		# @restaurant = Restaurant.find(params[:id])
+		@restaurant = current_user.restaurants.find(params[:id])
 	end
 
 	def restaurant_params

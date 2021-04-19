@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  resources :restaurants#, only: [:index, :show]
+  # get '/restaurants', to: 'restaurants#index'
+  
+  # get :new_restaurants, to: 'restaurants#new' #, path: "ccc"
+  
+  # post '/restaurants_list', to: 'restaurants#list'
+  root "restaurants#index"
+
   resources :users, only: [:create] do
     collection do
       get :sign_up, action: 'new'
@@ -14,12 +22,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :restaurants#, only: [:index, :show]
-  root "restaurants#index"
-  # get '/restaurants', to: 'restaurants#index'
-  
-  # get :new_restaurants, to: 'restaurants#new' #, path: "ccc"
-
-  # post '/restaurants_list', to: 'restaurants#list'
 
 end

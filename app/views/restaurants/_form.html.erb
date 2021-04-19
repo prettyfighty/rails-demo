@@ -1,6 +1,6 @@
-<% if @restaurant.errors.any? %>
+<% if restaurant.errors.any? %>
   <ul>
-    <% @restaurant.errors.full_messages.each do |messages| %>
+    <% restaurant.errors.full_messages.each do |messages| %>
     <li><%= messages %></li>
     <% end %>
   </ul>
