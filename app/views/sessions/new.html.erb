@@ -3,7 +3,7 @@
 <%= simple_form_for(@user, url: sign_in_sessions_path) do |f| %>
   <%= f.input :email, label: "Email" %>
   <%= f.input :password, label: "Password" %>
-  <%= f.button :submit, label: "Login", class: "btn btn-success" %>
+  <%= f.button :submit, "Login", class: "btn btn-success" %>
 <% end %>
 <br>
 <%= link_to "返回餐廳列表", restaurants_path, class: "btn btn-default" %>

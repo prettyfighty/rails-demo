@@ -1,13 +1,27 @@
 <h1>餐廳列表</h1>
-
 <!-- <a href="/new_restaurants">新增餐廳</a>  -->
-
-<%= link_to '新增餐廳', new_restaurant_path, class: "btn btn-primary btn-sm" %>
-<%= link_to '新增使用者', sign_up_users_path, class: "btn btn-success btn-sm" %>
-<%= link_to '登入', sign_in_sessions_path, class: "btn btn-warning btn-sm" %>
-
-<!-- <%= method(:link_to).source_location %>  查看方法寫在哪 -->
-
+<% if user_signed_in? %>
+<%= current_user.email %>
+<% end %>
+<nav class="button-group">
+  <% if user_signed_in? %>
+    <%= link_to '新增餐廳', new_restaurant_path, class: "btn btn-primary btn-sm" %>
+    <%= link_to '登出', sign_out_sessions_path(session), method: "delete", data: {confirm: "登出？"}, class: "btn btn-warning btn-sm" %>
+  <% else %>
+    <%= link_to '新增使用者', sign_up_users_path, class: "btn btn-success btn-sm" %>
+    <%= link_to '登入', sign_in_sessions_path, class: "btn btn-warning btn-sm" %>
+  <% end %>
+  
+  
+  <!-- <%= method(:link_to).source_location %>  查看方法寫在哪 -->
+  <form  class="form-group">
+    <%= search_form_for @q do |f| %>
+      <%= f.label :title_cont, "搜尋餐廳名稱" %>
+      <%= f.search_field :title_cont %>
+      <%= f.submit :class => "btn btn-default btn-sm" %>
+    <% end %>
+  </form>
+</nav>
 
 <table class="table">
   <thead>
@@ -19,13 +33,6 @@
       <th></th>
     </tr>
   </thead>
-<%= search_form_for @q do |f| %>
-
-  <%= f.label :title_cont %>
-  <%= f.search_field :title_cont %>
-  <%= f.submit %>
-<% end %>
-
   <tbody>
     <% @restaurants.each do |restaurant| %>
     <tr>

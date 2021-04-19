@@ -9,8 +9,8 @@ class User < ApplicationRecord
     require 'digest'
 
     # 在加密前，先幫密碼加點料，目的是為了拖延駭客解碼的時間
-    def self.salt(password)
-      "abc#{password}123"
+    def self.salt(password, head = 'abc', tail = '123')
+      "#{head}#{password}#{tail}"
     end
     
     def self.encrypt(password)

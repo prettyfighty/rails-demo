@@ -8,7 +8,11 @@ class RestaurantsController < ApplicationController
 	end
 
 	def new
-		@restaurant = Restaurant.new
+		if session[:thankyou9527]
+			@restaurant = Restaurant.new
+		else
+			redirect_to restaurants_path
+		end
 	end
 
 	def create
