@@ -30,6 +30,8 @@ class RestaurantsController < ApplicationController
 
 	def show
 		@restaurant = Restaurant.find(params[:id])
+		@comment = @restaurant.comments.new
+		@comments = @restaurant.comments.order(id: :desc)
 	end
 
 	def edit

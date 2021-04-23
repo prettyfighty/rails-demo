@@ -35,26 +35,20 @@
     </tr>
   </thead>
   <tbody>
-    <% if user_signed_in? %>    
-      <% @restaurants.where('user_id = ?', session[ENV['session_name']]).each do |restaurant| %>
+    <% @restaurants.each do |restaurant| %>
       <tr>
         <td><%= link_to restaurant.title, restaurant_path(restaurant), class: "restaurant-title" %></td>
         <td><%= restaurant.address %></td>
         <td><%= restaurant.tel %></td>
         <td><%= restaurant.email %></td>
-        <td><%= link_to "編輯", edit_restaurant_path(restaurant), class: "btn btn-info btn-xs" %></td>
-        <td><%= link_to "刪除", restaurant_path(restaurant), method: "delete", data: {confirm: "是否確定刪除？"}, class: "btn btn-danger btn-xs" %></td>
+        <% if user_signed_in? && restaurant.user == current_user %>
+          <td><%= link_to "編輯", edit_restaurant_path(restaurant), class: "btn btn-info btn-xs" %></td>
+          <td><%= link_to "刪除", restaurant_path(restaurant), method: "delete", data: {confirm: "是否確定刪除？"}, class: "btn btn-danger btn-xs" %></td>
+        <% else %>
+          <td></td>
+          <td></td>
+        <% end %>
       </tr>
-      <% end %>
-    <% else %>
-      <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><%= link_to restaurant.title, restaurant_path(restaurant), class: "restaurant-title" %></td>
-        <td><%= restaurant.address %></td>
-        <td><%= restaurant.tel %></td>
-        <td><%= restaurant.email %></td>
-      </tr>
-      <% end %>
     <% end %>
   </tbody>
 </table>

@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   
-  resources :restaurants#, only: [:index, :show]
-  # get '/restaurants', to: 'restaurants#index'
-  
-  # get :new_restaurants, to: 'restaurants#new' #, path: "ccc"
-  
-  # post '/restaurants_list', to: 'restaurants#list'
   root "restaurants#index"
+  
+  # get '/restaurants', to: 'restaurants#index'
+  # get :new_restaurants, to: 'restaurants#new' #, path: "ccc"
+  # post '/restaurants_list', to: 'restaurants#list'
+  resources :restaurants do #, only: [:index, :show]
+    resources :comments, shallow: true, only: [:create, :destroy]
+    # resources :comments, only: [:create]
+  end
+  # resources :comment, only: [:edit, :update, :destroy]
 
   resources :users, only: [:create] do
     collection do
@@ -22,5 +25,5 @@ Rails.application.routes.draw do
     end
   end
 
-
+  resources :comments, only: [:create, :destroy] 
 end

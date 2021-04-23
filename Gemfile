@@ -31,7 +31,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  
+  # 一次開啟該開的東西 *注意:預設無法和debugger共存
+  gem 'foreman', '~> 0.87.2'
 end
 
 group :development do
@@ -59,6 +60,18 @@ end
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'simple_form'
+
+# ransack 搜尋功能
 gem 'ransack'
+
+# figaro - 存環境變數
 gem 'figaro'
+
+# paranoia - 軟刪除功能
 gem 'paranoia'
+
+# devise - 快速新增會員功能
+# gem 'devise'
+
+# paper_trail - 紀錄編輯的歷史紀錄
+# gem 'paper_trail', '~> 12.0'

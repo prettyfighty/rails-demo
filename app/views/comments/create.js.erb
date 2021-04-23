@@ -1,0 +1,7 @@
+var area = document.querySelector('.comment-area')
+var newLi = document.createElement('li')
+newLi.textContent = '<%= @comment.content %>'
+area.prepend(newLi)
+document.querySelector('#comment_content').value = ''
+
+

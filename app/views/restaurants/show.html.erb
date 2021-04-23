@@ -8,4 +8,19 @@
   <%= simple_format(@restaurant.description) %>
 </div>
 <br>
+<% if user_signed_in? %>
+<div class="comment-content">
+  <%= simple_form_for(@comment, url: restaurant_comments_path(@restaurant), remote: true) do |f| %>
+  <%= f.input :content, label: "留言內容" %>
+  <%= f.button :submit, "送出", class: "btn btn-primary btn-sm" %>
+  <% end %>
+</div>
+<% end %>
+<br>
+<br>
+<div class="comment-area">
+  <% @comments.each do |comment| %>
+    <div class="content"><%= simple_format(comment.content) %></div>
+  <% end %>
+</div>
 <%= link_to "返回餐廳列表", restaurants_path, class: "btn btn-default" %>
