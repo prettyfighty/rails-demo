@@ -4,7 +4,7 @@ class RestaurantsController < ApplicationController
 	before_action :check_user!, except: [:index, :show]
 
 	def index
-		@q = Restaurant.available.ransack(params[:q])
+		@q = Restaurant.available.includes(:user).ransack(params[:q])
   	@restaurants = @q.result(distinct: true)
 	end
 
@@ -31,7 +31,7 @@ class RestaurantsController < ApplicationController
 	def show
 		@restaurant = Restaurant.find(params[:id])
 		@comment = @restaurant.comments.new
-		@comments = @restaurant.comments.order(id: :desc)
+		@comments = @restaurant.comments.order(id: :desc).includes(:user)
 	end
 
 	def edit

@@ -1,4 +1,10 @@
-<h1><%= @restaurant.title %></h1>
+<% if user_signed_in? %>
+  <%= link_to '登出', sign_out_sessions_path(session), method: "delete", data: {confirm: "登出？"}, class: "btn btn-warning btn-sm" %>
+<% else %>
+  <%= link_to '登入', sign_in_sessions_path, class: "btn btn-warning btn-sm" %>
+<% end %>
+<%= link_to "返回餐廳列表", restaurants_path, class: "btn btn-default" %>
+<h1><%= @restaurant.title %><i class="far fa-bell"></i></h1>
 <ul>
   <li>地址：<%= @restaurant.address %></li>
   <li>電話：<%= @restaurant.tel %></li>
@@ -9,7 +15,7 @@
 </div>
 <br>
 <% if user_signed_in? %>
-<div class="comment-content">
+<div class="comment-content-message">
   <%= simple_form_for(@comment, url: restaurant_comments_path(@restaurant), remote: true) do |f| %>
   <%= f.input :content, label: "留言內容" %>
   <%= f.button :submit, "送出", class: "btn btn-primary btn-sm" %>
@@ -20,7 +26,9 @@
 <br>
 <div class="comment-area">
   <% @comments.each do |comment| %>
-    <div class="content"><%= simple_format(comment.content) %></div>
+    <div class="comment-content">
+      <i class="fas fa-user-astronaut"></i> <%= comment.user.email[/^\w+/].upcase %>
+      <%= simple_format(comment.content) %>
+    </div>
   <% end %>
 </div>
-<%= link_to "返回餐廳列表", restaurants_path, class: "btn btn-default" %>

@@ -13,3 +13,5 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import '../front-end/restaurant.js'
+
+import '../icon/fortawesome'

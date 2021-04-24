@@ -1,7 +1,8 @@
 var area = document.querySelector('.comment-area')
-var newLi = document.createElement('li')
-newLi.textContent = '<%= @comment.content %>'
-area.prepend(newLi)
+var newDiv = document.createElement('div')
+newDiv.className = 'content'
+newDiv.innerHTML = `<i class="fas fa-user-astronaut"></i><%= @comment.user.email[/^.+@/].upcase %><%= simple_format(@comment.content) %>`
+area.prepend(newDiv)
 document.querySelector('#comment_content').value = ''
 
 
